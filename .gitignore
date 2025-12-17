@@ -12,3 +12,5 @@ gitlint.test
 launch.json
 *.html
 *.js
+
+/riscv-toolchain
