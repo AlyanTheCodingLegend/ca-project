@@ -168,7 +168,8 @@ def compile_program(program_name: str) -> str:
 
     try:
         # Compile source to executable
-        gcc_cmd = [gcc_path] + gcc_opts + [source_file, "-o", out_file]
+        # Explicitly link libgcc to provide software helpers like __divsi3
+        gcc_cmd = [gcc_path] + gcc_opts + [source_file, "-o", out_file, "-lgcc"]
         subprocess.run(gcc_cmd, check=True, capture_output=True)
 
         # Convert to binary

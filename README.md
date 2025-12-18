@@ -73,6 +73,22 @@ The simulator will ask you to:
 3. Enter program name (e.g., `fibonacci`, `loop_acc`, `endless_loop`)
 4. Specify number of cycles to simulate
 
+
+### Graphical UI (minimal viewer)
+
+A simple Tkinter-based GUI is available to visualize the pipelined model and step through cycles.
+
+```bash
+# Launch the GUI
+python gui.py
+```
+
+Features:
+- Compile & load a program from `programs/`
+- Step single cycles or run continuously
+- View PC, pipeline registers and first 16 registers
+
+Note: This is a lightweight educational viewer - use the `--verbose` mode with the console for detailed tracing.
 Example session:
 ```
 ============================================================
