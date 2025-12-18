@@ -6,8 +6,8 @@
 
 ## Team Members
 
-- Alyan Ahmed Memon - 469355 (Team Representative)
-- Muhammad Abdullah Waqar - 458785
+- Alyan Ahmed Memon - 469355
+- Muhammad Abdullah Waqar - 458785 (Team Representative)
 - Uswa Khan - 454092
 - Muhammad Rayyan Faisal - 475207
 
