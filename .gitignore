@@ -13,4 +13,6 @@ launch.json
 *.html
 *.js
 
-/riscv-toolchain
+# RISC-V Toolchain (downloaded by setup_toolchain.py)
+riscv-toolchain/
+temp_toolchain/
