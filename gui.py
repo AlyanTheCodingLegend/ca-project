@@ -694,10 +694,7 @@ class PipelinedGUI(tk.Tk):
             self.log(f"Error loading run.log: {e}")
 
     def clear_logs(self):
-        """Clear the GUI log pane and reset snapshot/auto-stop state.
-
-        Prompts the user whether to also delete the on-disk `run.log` file.
-        """
+        """Clear the GUI log pane and reset snapshot/auto-stop state."""
         try:
             self.log_text.config(state=tk.NORMAL)
             self.log_text.delete('1.0', tk.END)
@@ -709,17 +706,6 @@ class PipelinedGUI(tk.Tk):
                 self._prev_snapshot = None
             self._stable_count = 0
             self.log("Logs cleared by user.")
-
-            # Ask whether to delete on-disk run.log
-            runlog = os.path.join(self.proj_root, 'run.log')
-            if os.path.exists(runlog):
-                ans = messagebox.askyesno("Delete run.log?", "Also delete on-disk 'run.log'? This cannot be undone.")
-                if ans:
-                    try:
-                        os.remove(runlog)
-                        self.log("Deleted on-disk run.log")
-                    except Exception as e:
-                        messagebox.showerror("Error", f"Failed to delete run.log: {e}")
         except Exception as e:
             messagebox.showerror("Error", f"Failed to clear logs: {e}")
 
