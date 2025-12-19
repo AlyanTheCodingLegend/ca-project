@@ -57,45 +57,6 @@ def execute_bin(
     return core
 
 
-def loop_acc():
-    core_type = 'single'
-    program_name = 'LOOP_ACC'
-    path_to_bin = 'programs/loop_acc/loop_acc.bin'
-    num_cycles = 2010
-
-    core = execute_bin(core_type, program_name, path_to_bin, num_cycles)
-
-    # Print register and memory contents
-    print("x1 = " + str(core.readReg(1)))
-    print("x2 = " + str(core.readReg(2)))
-    print("x5 = " + str(core.readReg(5)))
-    print("pc = " + str(hex(core.readPC())))
-    print("mem@4096 = ", core.readDataMem(4096, 4))
-    print("")
-
-
-def fibonacci():
-    core_type = 'single'
-    program_name = 'FIBONACCI'
-    path_to_bin = 'programs/fibonacci/fibonacci.bin'
-    num_cycles = 140
-
-    core = execute_bin(core_type, program_name, path_to_bin, num_cycles)
-
-    # Print result
-    print("Result = ", core.readDataMem(2048, 4))
-    print("")
-
-
-def endless_loop():
-    core_type = 'single'
-    program_name = 'ENDLESS_LOOP'
-    path_to_bin = 'programs/endless_loop/endless_loop.bin'
-    num_cycles = 1000
-
-    execute_bin(core_type, program_name, path_to_bin, num_cycles)
-
-
 def get_toolchain_path():
     """Get the path to the RISC-V toolchain binaries.
 
@@ -168,7 +129,8 @@ def compile_program(program_name: str) -> str:
 
     try:
         # Compile source to executable
-        gcc_cmd = [gcc_path] + gcc_opts + [source_file, "-o", out_file]
+        # Note: -lgcc must come AFTER source files so linker can resolve symbols
+        gcc_cmd = [gcc_path] + gcc_opts + [source_file, "-o", out_file, "-lgcc"]
         subprocess.run(gcc_cmd, check=True, capture_output=True)
 
         # Convert to binary
