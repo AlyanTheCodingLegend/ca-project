@@ -53,18 +53,22 @@ def download_file(url, dest_path):
         bar = '=' * filled + '-' * (bar_length - filled)
         print(f'\r[{bar}] {percent:.1f}%', end='', flush=True)
 
+    # Accept pathlib.Path or string paths
+    dest_path = str(dest_path)
     urllib.request.urlretrieve(url, dest_path, show_progress)
     print()  # New line after progress bar
 
 
 def extract_archive(archive_path, extract_to):
-    """Extract a zip or tar.gz archive."""
+    """Extract a zip, tar.gz or tgz archive."""
+    # Accept pathlib.Path as well as strings
+    archive_path = str(archive_path)
     print(f"Extracting {archive_path}...")
 
     if archive_path.endswith('.zip'):
         with zipfile.ZipFile(archive_path, 'r') as zip_ref:
             zip_ref.extractall(extract_to)
-    elif archive_path.endswith('.tar.gz'):
+    elif archive_path.endswith('.tar.gz') or archive_path.endswith('.tgz'):
         with tarfile.open(archive_path, 'r:gz') as tar_ref:
             tar_ref.extractall(extract_to)
     else:

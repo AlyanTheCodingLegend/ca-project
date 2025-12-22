@@ -129,7 +129,7 @@ def compile_program(program_name: str) -> str:
 
     try:
         # Compile source to executable
-        # Note: -lgcc must come AFTER source files so linker can resolve symbols
+        # Explicitly link libgcc to provide software helpers like __divsi3
         gcc_cmd = [gcc_path] + gcc_opts + [source_file, "-o", out_file, "-lgcc"]
         subprocess.run(gcc_cmd, check=True, capture_output=True)
 
